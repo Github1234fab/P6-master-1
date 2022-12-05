@@ -2,7 +2,6 @@ const Sauce = require('../modèles/sauce_schema');
 const fs = require('fs');
 
 
-
 // récupérer toutes les sauces
 exports.get_all_sauces =  (req, res, next) => {
   Sauce.find()
@@ -13,17 +12,16 @@ exports.get_all_sauces =  (req, res, next) => {
 // création d'une sauce
 exports.create_one_sauce = (req, res, next) => {
   const objet_sauce = JSON.parse(req.body.sauce);
-  delete objet_sauce._id; 
-  delete objet_sauce._userId; 
   const sauce = new Sauce({
       ...objet_sauce,
       userId: req.auth.userId,
-      imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-  });
-  sauce.save()
-  .then(() => {res.status(201).json({message: 'Sauce enregistrée !'})})
-  .catch(error => { res.status(400).json( { error })})
-};
+      imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+    });
+    sauce.save()
+    .then(() => res.status(201).json({message: 'Sauce enregistrée !'}))
+    .catch( error => res.status(400).json({error}) );
+    };
+
 
 // récupération d'une sauce
 exports.get_one_sauce = (req, res, next) => {
@@ -98,7 +96,6 @@ exports.like_sauce = (req, res, next) => {
   }
 })
 .catch (error => res.status(500).json({error}))
-
 }
 
 
