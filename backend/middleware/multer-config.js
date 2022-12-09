@@ -13,6 +13,7 @@ const storage = multer.diskStorage({
     callback(null, name + Date.now() + '.' + extension);
   }
 });
+
 //type de fichiers acceptés
 const MIME_TYPES = {
   "image/jpg": "jpg",

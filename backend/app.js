@@ -6,6 +6,7 @@ const sauces_routes = require('./routes/routing_sauce');
 const user_route = require('./routes/routing_user');
 
 const path = require('path');
+app.use(helmet());
 
 mongoose.connect('mongodb+srv://FabTest:Coucoulele@cluster0.f0ph9he.mongodb.net/Piquante?retryWrites=true&w=majority',
   { useNewUrlParser: true,
