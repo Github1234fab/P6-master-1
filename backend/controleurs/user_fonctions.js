@@ -36,7 +36,7 @@ exports.signup = (req, res, next) => {
                         token: Token.sign(
                             { userId: user._id },
                             'RANDOM_TOKEN_SECRET',
-                            { expiresIn: '72h' }
+                            { expiresIn: '24h' }
                         )
                     });
                 })

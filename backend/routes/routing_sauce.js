@@ -1,9 +1,12 @@
 const express = require('express');
-const router = express.Router();
-
+// auth permet d'authentifier les requêtes
+//  et de transmettre l'authentification aux gestionnaires de routes.
 const auth = require('../middleware/auth');
+const router = express.Router();
 const multer = require('../middleware/multer-config');
 const fonctions = require('../controleurs/sauce_fonctions');
+
+
 
 router.get('/', auth, fonctions.get_all_sauces);
 router.get('/:id', auth, fonctions.get_one_sauce);
@@ -14,3 +17,4 @@ router.post("/:id/like", auth, multer, fonctions.like_sauce);
 
 
 module.exports = router;
+ 
